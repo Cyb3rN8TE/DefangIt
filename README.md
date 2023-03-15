@@ -4,6 +4,14 @@
 
 **Simple chrome extension that defangs selected IP address, URL or Domain**
 
+**How to install?**
+
+1) Open chrome
+2) Type chrome://extensions/ in the browser
+3) Enable developer mode
+4) Click 'load unpacked' 
+5) Select the DefangIt folder
+
 **How to use?**
 
 1) Select the text that you want to Defang
