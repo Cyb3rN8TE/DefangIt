@@ -18,3 +18,5 @@
 2) Right click
 3) Click "Defang Selected Text"
 4) Paste the defanged text
+
+![alt text](Images/Demo.gif)
