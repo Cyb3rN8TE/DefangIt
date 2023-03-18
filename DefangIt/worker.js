@@ -1,3 +1,13 @@
+// This function gets information on the IP address.
+function ipLookup(input){
+	var ipAddress = input.selectionText.toLowerCase();
+
+	// Open a new tab with the IP address lookup website and pass the selected text as a parameter.
+	chrome.tabs.create({
+		url: "https://www.ipaddress.com/ip-lookup/" + ipAddress
+	});
+}
+
 // This function takes the selected text and replaces all occurrences of "." and ":" with "[.]" and "[:]" respectively.
 function defang(input){
 	var url = input.selectionText.toLowerCase();
@@ -27,4 +37,11 @@ chrome.contextMenus.create({
 	title: "Defang Selected Text",
 	contexts:["selection"],
 	onclick: defang
+});
+
+// This code creates a new context menu item titled "IP Lookup" that appears when the user right clicks, and calls the ipLookup() function when clicked.
+chrome.contextMenus.create({
+	title: "IP Lookup",
+	contexts:["selection"],
+	onclick: ipLookup
 });
