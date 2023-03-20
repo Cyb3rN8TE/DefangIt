@@ -1,24 +1,35 @@
 {
-        "manifest_version": 2,
-    
-        "name": "DefangIt",
-        "description": "IT Security tool that defangs any selected IPs, URLs and Domains and copies them to your clipboard",
-        "version": "1.0.0",
-    
-        "permissions": [
-          "contextMenus",
-          "tabs",
-          "notifications"
-    
-          ],
-        "icons": {
-            "16": "icon16.png",
-            "32": "icon32.png",
-            "48": "icon48.png",
-            "128": "icon128.png"
-        },
-    
-        "background": {
-          "scripts": ["worker.js"]
-        }
+  "manifest_version": 3,
+
+  "name": "DefangIt",
+  "description": "IT Security tool that defangs any selected IPs, URLs and Domains and copies them to your clipboard",
+  "version": "1.0.0",
+
+  "permissions": [
+    "contextMenus",
+    "tabs"
+  ],
+
+  "icons": [
+    {
+      "src": "icon16.png",
+      "sizes": "16x16"
+    },
+    {
+      "src": "icon32.png",
+      "sizes": "32x32"
+    },
+    {
+      "src": "icon48.png",
+      "sizes": "48x48"
+    },
+    {
+      "src": "icon128.png",
+      "sizes": "128x128"
+    }
+  ],
+
+  "background": {
+    "service_worker": "worker.js"
+  }
 }
