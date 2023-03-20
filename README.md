@@ -2,7 +2,7 @@
 
 ![alt text](https://github.com/nwjohns101/DefangIt/blob/Dev/Images/FangsImage.png) 
 
-**Simple chrome extension that defangs selected IP address, URL or Domain**
+**Simple chrome extension that defangs and provides info about the selected IP address, URL or Domain**
 
 **How to install?**
 
@@ -14,9 +14,18 @@
 
 **How to use?**
 
-1) Select the text that you want to Defang
+Defang:
+
+1) Select the text
 2) Right click
 3) Click "Defang Selected Text"
 4) Paste the defanged text
+
+IP Lookup:
+
+1) Select the text
+2) Right click
+3) Click "IP Lookup"
+4) Report from ipaddress.com opens in a new tab
 
 ![alt text](Images/Demo.gif)
