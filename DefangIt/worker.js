@@ -8,12 +8,11 @@ function ipLookup(input){
 	});
 }
 
-// This function takes the selected text and replaces all occurrences of "." and ":" with "[.]" and "[:]" respectively.
 function defang(input){
 	var url = input.selectionText.toLowerCase();
 	url = url.replace(/[.:]/g, function(match) {
 		return '[' + match + ']';
-	});
+	}).replace(/http/g, 'hxxp').replace(/https/g, 'hxxps');
 
 	// Create a temporary text element and set its content to the modified URL.
 	var copyFrom = document.createElement("textarea");
@@ -39,9 +38,10 @@ chrome.contextMenus.create({
 	onclick: defang
 });
 
-// This code creates a new context menu item titled "IP Lookup" that appears when the user right clicks, and calls the ipLookup() function when clicked.
+// This code creates a new context menu item titled "IP/Domain Lookup" that appears when the user right clicks, and calls the ipLookup() function when clicked.
 chrome.contextMenus.create({
-	title: "IP Lookup",
+	title: "IP/Domain Lookup",
 	contexts:["selection"],
 	onclick: ipLookup
 });
+
