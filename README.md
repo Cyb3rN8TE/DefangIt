@@ -21,6 +21,13 @@ Defang:
 3) Click "Defang Selected Text"
 4) Paste the defanged text
 
+Refang:
+
+1) Select the text
+2) Right click
+3) Click "Refang Selected Text"
+4) Paste the refanged text
+
 IP Lookup:
 
 1) Select the text
