@@ -1,8 +1,8 @@
 # DefangIt
 
-![alt text](https://github.com/nwjohns101/DefangIt/blob/Dev/Images/FangsImage.png) 
+<img src="https://github.com/Cyb3rN8TE/DefangIt/blob/Dev/Images/DefangIt_Logo.png" alt="DefangIt Logo" width="150" height="150">
 
-**Simple chrome extension that defangs and provides info about the selected IP address, URL or Domain**
+**Simple chrome extension that defangs/refangs selected text on a web page**
 
 **How to install?**
 
@@ -12,27 +12,20 @@
 4) Click 'load unpacked' 
 5) Select the DefangIt folder
 
+Coming to the Chrome Store soon...
+
 **How to use?**
 
 Defang:
 
-1) Select the text
-2) Right click
-3) Click "Defang Selected Text"
-4) Paste the defanged text
+1) Select the text on the page
+2) Cick the extension to open
+3) Select Defang
+4) The selected text will be replaced with the defanged version.
 
 Refang:
 
-1) Select the text
-2) Right click
-3) Click "Refang Selected Text"
-4) Paste the refanged text
-
-IP Lookup:
-
-1) Select the text
-2) Right click
-3) Click "IP Lookup"
-4) Report from ipaddress.com opens in a new tab
-
-![alt text](Images/Demo.gif)
+1) Select the text on the page
+2) Cick the extension to open
+3) Select Refang
+4) The selected text will be replaced with the refanged version.

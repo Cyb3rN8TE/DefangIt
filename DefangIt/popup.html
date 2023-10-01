@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DefangIt</title>
+  <style>
+    body {
+      background-color: rgb(238, 247, 235);
+    }
+    
+    h2 {
+      color: black;
+      text-align: center; /* Center-align the text within the h2 element */
+    }
+
+    /* Add CSS to make the textarea non-resizable and center the text */
+    #selectedText {
+      resize: none;
+      text-align: center; /* Center the text within the textarea */
+      display: block;
+      margin: 0 auto; /* Center the textarea horizontally */
+    }
+
+    /* Add margin to the message element to push it down */
+    .message {
+      margin-top: 10px; 
+      text-align: center; /* Center-align the text within the message element */
+    }
+
+    /* Center the buttons and add space above them */
+    #button-container {
+      text-align: center;
+      margin-top: 10px; /* Add margin to create space above the buttons */
+    }
+
+    /* Center the image horizontally */
+    #image-container {
+      text-align: center;
+    }
+
+    #image-container img {
+      display: block;
+      margin: 0 auto; /* Center the image horizontally */
+      width: 75px; 
+      height: 75px; /* Adjust the height accordingly to maintain aspect ratio */
+    }
+  </style>
+</head>
+<body>
+  <div id="image-container"> 
+    <img src="/images/128.png" alt="Icon" width="75" height="75">
+  </div>
+  <h2>
+    <strong>DefangIt</strong>
+  </h2>
+  <!-- Add readonly attribute to make the textarea non-editable -->
+  <textarea id="selectedText" rows="2" cols="25" readonly></textarea>
+  <!-- Add a container for the buttons and center them -->
+  <div id="button-container">
+    <button id="defangButton">Defang</button>
+    <button id="refangButton">Refang</button>
+  </div>
+  <div id="message" class="message"></div> <!-- Message element -->
+  <script src="popup.js"></script>
+</body>
+</html>
