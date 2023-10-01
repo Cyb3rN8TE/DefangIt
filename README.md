@@ -1,6 +1,6 @@
 # DefangIt
 
-![alt text](https://github.com/Cyb3rN8TE/DefangIt/blob/Dev/Images/DefangIt_Logo.png) 
+<img src="https://github.com/Cyb3rN8TE/DefangIt/blob/Dev/Images/DefangIt_Logo.png" alt="DefangIt Logo" width="150" height="150">
 
 **Simple chrome extension that defangs/refangs selected text on a web page**
 
