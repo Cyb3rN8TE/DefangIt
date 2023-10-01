@@ -1,6 +1,6 @@
 # DefangIt
 
-![alt text](https://github.com/nwjohns101/DefangIt/blob/Dev/Images/FangsImage.png) 
+![alt text](https://github.com/Cyb3rN8TE/DefangIt/blob/Dev/Images/DefangIt_Logo.jpg) 
 
 **Simple chrome extension that defangs/refangs selected text on a web page**
 
@@ -29,5 +29,3 @@ Refang:
 2) Cick the extension to open
 3) Select Refang
 4) The selected text will be replaced with the refanged version.
-
-![alt text](Images/Demo.gif)
