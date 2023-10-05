@@ -43,7 +43,7 @@ document.getElementById('defangButton').addEventListener('click', function() {
     const selectedText = document.getElementById('selectedText').value;
 
     if (selectedText.trim() === "") {
-      showMessage('No text is selected', 'red');
+      showMessage('Error: No text is selected', 'red');
       return;
     }
 

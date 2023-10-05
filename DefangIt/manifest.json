@@ -1,8 +1,8 @@
 {
   "name": "DefangIt",
-  "version": "2.0",
+  "version": "2.1",
   "manifest_version": 3,
-  "permissions": ["activeTab", "scripting"],
+  "permissions": ["activeTab", "scripting", "contextMenus"],
   "action": {
     "default_popup": "popup.html",
     "default_title": "DefangIt",
@@ -18,5 +18,8 @@
       "js": ["content.js"],
       "run_at": "document_end"
     }
-  ]
+  ],
+  "background": {
+    "service_worker": "background.js"
+  }
 }
