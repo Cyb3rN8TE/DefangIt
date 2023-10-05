@@ -19,13 +19,13 @@ Coming to the Chrome Store soon...
 Defang:
 
 1) Select the text on the page
-2) Cick the extension to open
+2) Click the extension icon in the extension bar on the top right side of the browser, or right-click and hover the mouse over DefangIt.
 3) Select Defang
 4) The selected text will be replaced with the defanged version.
 
 Refang:
 
 1) Select the text on the page
-2) Cick the extension to open
+2) Click the extension icon in the extension bar on the top right side of the browser, or right-click and hover the mouse over DefangIt.
 3) Select Refang
 4) The selected text will be replaced with the refanged version.
