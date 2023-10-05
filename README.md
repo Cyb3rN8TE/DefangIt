@@ -4,15 +4,7 @@
 
 **Simple chrome extension that defangs/refangs selected text on a web page**
 
-**How to install?**
-
-1) Open chrome
-2) Type chrome://extensions/ in the browser
-3) Enable developer mode
-4) Click 'load unpacked' 
-5) Select the DefangIt folder
-
-Coming to the Chrome Store soon...
+https://chrome.google.com/webstore/detail/defangit/gpigcfneaimhpnidnnnojakgmlkkdhdc
 
 **How to use?**
 
