@@ -6,18 +6,17 @@
 
 https://chrome.google.com/webstore/detail/defangit/gpigcfneaimhpnidnnnojakgmlkkdhdc
 
-**How to use?**
+**Defang/Refang Selected Text:**
 
-Defang:
+1. Select the text on the page
+2. Click the extension icon in the extension bar on the top right side of the browser, or right-click and hover the mouse over DefangIt.
+3. Select Defang or Refang.
 
-1) Select the text on the page
-2) Click the extension icon in the extension bar on the top right side of the browser, or right-click and hover the mouse over DefangIt.
-3) Select Defang
-4) The selected text will be replaced with the defanged version.
+The selected text will be replaced with the defanged or refanged version based on selection.
 
-Refang:
+**Defang/Refang Page:**
 
-1) Select the text on the page
-2) Click the extension icon in the extension bar on the top right side of the browser, or right-click and hover the mouse over DefangIt.
-3) Select Refang
-4) The selected text will be replaced with the refanged version.
+1. Click the extension icon in the extension bar on the top right side of the browser, or right-click anywhere on the page, then hover the mouse over DefangIt.
+2. Select Defang Page or Refang Page.
+
+All artefacts (IP Address, Domain, URL) on the current web page will be replaced with the defanged or refanged version based on selection.
