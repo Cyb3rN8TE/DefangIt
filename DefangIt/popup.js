@@ -14,7 +14,6 @@ chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
 // Handle the response from the content script
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
   if (request.selectedText) {
-    // Display the selected text in the textbox
     updateSelectedText(request.selectedText);
   }
 });
@@ -31,7 +30,6 @@ function showMessage(message, color) {
   messageDiv.textContent = message;
   messageDiv.style.color = color;
 
-  // Clear the message after 7 seconds (7000 milliseconds)
   setTimeout(() => {
     messageDiv.textContent = '';
   }, 7000);
@@ -47,20 +45,18 @@ document.getElementById('defangButton').addEventListener('click', function() {
       return;
     }
 
-    // Check if there are any periods in the selected text
     if (!selectedText.includes('.')) {
       showMessage('Error: Nothing to defang', 'red');
       return;
     }
 
-    // Check if there's already [.] in the selected text
     if (selectedText.includes('[.]')) {
-      return; // Do nothing if [.] is already present
+      return;
     }
 
     const defangedText = selectedText.replace(/\./g, '[.]');
     updateSelectedText(defangedText);
-    // Send the defanged text to the content script to update the selection on the page
+
     chrome.scripting.executeScript({
       target: { tabId: tabs[0].id },
       function: updateSelectionOnPage,
@@ -81,7 +77,6 @@ document.getElementById('refangButton').addEventListener('click', function() {
       return;
     }
 
-    // Check if there are any [.] in the selected text
     if (!selectedText.includes('[.]')) {
       showMessage('Error: Nothing to refang', 'red');
       return;
@@ -89,7 +84,7 @@ document.getElementById('refangButton').addEventListener('click', function() {
 
     const refangedText = selectedText.replace(/\[\.\]/g, '.');
     updateSelectedText(refangedText);
-    // Send the refanged text to the content script to update the selection on the page
+
     chrome.scripting.executeScript({
       target: { tabId: tabs[0].id },
       function: updateSelectionOnPage,
@@ -109,3 +104,79 @@ function updateSelectionOnPage(newText) {
     range.insertNode(document.createTextNode(newText));
   }
 }
+
+// Function to replace periods with [.] in text on the page
+function replacePeriodsWithBrackets(tab, successMessage) {
+  chrome.scripting.executeScript({
+    target: { tabId: tab.id },
+    function: function () {
+      // Regular expression to match domains, IP addresses, and URLs
+      const regex = /((https?:\/\/|www\.)[^\s]+)|(\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b)|(\b(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,6}\b)/g;
+      
+      // Function to replace periods with [.] in matched text
+      function replacePeriods(match) {
+        return match.replace(/\./g, '[.]');
+      }
+
+      // Select text nodes in the body element and replace periods with [.] only in their content
+      const walker = document.createTreeWalker(
+        document.body,
+        NodeFilter.SHOW_TEXT,
+        null,
+        false
+      );
+
+      let node;
+      while ((node = walker.nextNode())) {
+        node.textContent = node.textContent.replace(regex, replacePeriods);
+      }
+    }
+  }, function() {
+    showMessage(successMessage, 'green');
+  });
+}
+
+// Function to replace [.] with periods in text on the page
+function replaceBracketsWithPeriods(tab, successMessage) {
+  chrome.scripting.executeScript({
+    target: { tabId: tab.id },
+    function: function () {
+      // Regular expression to match domains, IP addresses, and URLs with [.] 
+      const regex = /(\b(?:https?:\/\/)?(?:www\.)?[a-zA-Z0-9-]+\.[a-zA-Z]{2,6}\b)|(\b\d{1,3}(?:\.\d{1,3}){3}\b)|(\[\.\])/g;
+
+      // Function to replace [.] with periods in matched text
+      function replaceBrackets(match) {
+        return match.replace(/\[\.\]/g, '.');
+      }
+
+      // Select text nodes in the body element and replace [.] with periods only in their content
+      const walker = document.createTreeWalker(
+        document.body,
+        NodeFilter.SHOW_TEXT,
+        null,
+        false
+      );
+
+      let node;
+      while ((node = walker.nextNode())) {
+        node.textContent = node.textContent.replace(regex, replaceBrackets);
+      }
+    }
+  }, function() {
+    showMessage(successMessage, 'green');
+  });
+}
+
+// Handle the "Defang Page" button click
+document.getElementById('defangepageButton').addEventListener('click', function() {
+  chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+    replacePeriodsWithBrackets(tabs[0], 'Success: Text defanged and updated on the page.');
+  });
+});
+
+// Handle the "Refang Page" button click
+document.getElementById('refangpageButton').addEventListener('click', function() {
+  chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+    replaceBracketsWithPeriods(tabs[0], 'Success: Text refanged and updated on the page.');
+  });
+});

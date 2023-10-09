@@ -19,17 +19,17 @@ chrome.contextMenus.create({
   contexts: ["page"]
 });
 
-// Create a sub-menu item "Replace periods with [.]"
+// Create a sub-menu item "Defang Page"
 chrome.contextMenus.create({
-  id: "replacePeriodsContextMenuItem",
+  id: "DefangPageContextMenuItem",
   title: "Defang Page",
   parentId: "defangItParent",
   contexts: ["all"]
 });
 
-// Create a sub-menu item "Replace [.] with periods"
+// Create a sub-menu item "Refang Page"
 chrome.contextMenus.create({
-  id: "replaceBracketsWithPeriodsContextMenuItem",
+  id: "RefangePageContextMenuItem",
   title: "Refang Page",
   parentId: "defangItParent",
   contexts: ["all"]
@@ -41,9 +41,9 @@ chrome.contextMenus.onClicked.addListener(function (info, tab) {
     defangSelectedText(tab);
   } else if (info.menuItemId === "refangContextMenuItem") {
     refangSelectedText(tab);
-  } else if (info.menuItemId === "replacePeriodsContextMenuItem") {
+  } else if (info.menuItemId === "DefangPageContextMenuItem") {
     replacePeriodsWithBrackets(tab);
-  } else if (info.menuItemId === "replaceBracketsWithPeriodsContextMenuItem") {
+  } else if (info.menuItemId === "RefangePageContextMenuItem") {
     replaceBracketsWithPeriods(tab);
   }
 });
@@ -106,34 +106,66 @@ function refangSelectedText(tab) {
   });
 }
 
-// Function to replace periods with [.] in URLs, Domains, and IP addresses
+// Function to replace periods with [.] in text on the page
 function replacePeriodsWithBrackets(tab) {
   chrome.scripting.executeScript({
     target: { tabId: tab.id },
     function: function () {
+      // Regular expression to match domains, IP addresses, and URLs
       const regex = /((https?:\/\/|www\.)[^\s]+)|(\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b)|(\b(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,6}\b)/g;
-      
+
+      // Function to replace periods with [.] in matched text
       function replacePeriods(match) {
         return match.replace(/\./g, '[.]');
       }
 
-      document.body.innerHTML = document.body.innerHTML.replace(regex, replacePeriods);
+      // Select text nodes in the body element and replace periods with [.] only in their content
+      const walker = document.createTreeWalker(
+        document.body,
+        NodeFilter.SHOW_TEXT,
+        null,
+        false
+      );
+
+      let node;
+      while ((node = walker.nextNode())) {
+        // Ignore text nodes inside <img> elements
+        if (node.parentNode.tagName !== 'IMG') {
+          node.textContent = node.textContent.replace(regex, replacePeriods);
+        }
+      }
     }
   });
 }
 
-// Function to replace [.] with periods in URLs, Domains, and IP addresses
+// Function to replace [.] with periods in text on the page
 function replaceBracketsWithPeriods(tab) {
   chrome.scripting.executeScript({
     target: { tabId: tab.id },
     function: function () {
-      const regex = /\[\.\]/g;
+      // Regular expression to match domains, IP addresses, and URLs with [.] 
+      const regex = /(\b(?:https?:\/\/)?(?:www\.)?[a-zA-Z0-9-]+\.[a-zA-Z]{2,6}\b)|(\b\d{1,3}(?:\.\d{1,3}){3}\b)|(\[\.\])/g;
 
+      // Function to replace [.] with periods in matched text
       function replaceBrackets(match) {
         return match.replace(/\[\.\]/g, '.');
       }
 
-      document.body.innerHTML = document.body.innerHTML.replace(regex, replaceBrackets);
+      // Select text nodes in the body element and replace [.] with periods only in their content
+      const walker = document.createTreeWalker(
+        document.body,
+        NodeFilter.SHOW_TEXT,
+        null,
+        false
+      );
+
+      let node;
+      while ((node = walker.nextNode())) {
+        // Ignore text nodes inside <img> elements
+        if (node.parentNode.tagName !== 'IMG') {
+          node.textContent = node.textContent.replace(regex, replaceBrackets);
+        }
+      }
     }
   });
 }
