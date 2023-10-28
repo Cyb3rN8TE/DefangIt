@@ -2,9 +2,11 @@
 
 <img src="https://github.com/Cyb3rN8TE/DefangIt/blob/Dev/Images/DefangIt_Logo.png" alt="DefangIt Logo" width="150" height="150">
 
-**Simple chrome extension that defangs/refangs selected text on a web page**
+**Introduction**
 
-https://chrome.google.com/webstore/detail/defangit/gpigcfneaimhpnidnnnojakgmlkkdhdc
+DefangIt is a handy Chrome extension that simplifies the process of defanging and refanging text within your web browser. Whether you're dealing with IP Addresses, Domains, URLs, or any other text that needs to be sanitised for security or readability, DefangIt makes it easy.
+
+Available on the Chrome Web Store: https://chrome.google.com/webstore/detail/defangit/gpigcfneaimhpnidnnnojakgmlkkdhdc
 
 **Defang/Refang Selected Text:**
 
